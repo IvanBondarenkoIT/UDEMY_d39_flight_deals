@@ -40,8 +40,7 @@ class DataManager:
                     {
                      'city': item["city"].title(),
                      'iataCode': item["iataCode"],
-                     'lowestPrice': have_new_price if have_new_price else item["lowestPrice"],
-                     'id': 2
+                     'lowestPrice': have_new_price if have_new_price else item["lowestPrice"]
                     }
                 }
             sheet_response = requests.put(sheet_endpoint, json=sheet_inputs, headers=bearer_headers)
