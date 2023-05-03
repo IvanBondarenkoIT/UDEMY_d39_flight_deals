@@ -4,7 +4,12 @@ from data_manager import DataManager
 
 def main():
     dm = DataManager()
-    print(dm.read_google_sheet())
+    flight_data = dm.read_google_sheet()
+    print(flight_data)
+    have_new_prices = {}
+    if have_new_prices:
+        dm.write_google_sheet(flight_data=flight_data,
+                              new_prices=have_new_prices)
 
 
 if __name__ == '__main__':
