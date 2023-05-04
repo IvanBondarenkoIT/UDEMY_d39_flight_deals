@@ -10,19 +10,18 @@ class FlightSearch:
 
     def get_iata_code(self, city_name: str):
         tequila_endpoint = f'{self.TEQUILA_SERVER}/locations/query'
-        tequila_header = {
-            'apikey ': self.TEQUILA_KIWI_API,
-        }
+        tequila_header = {'apikey': self.TEQUILA_KIWI_API}
 
-        tequila_config = {
+        tequila_query = {
             "term": city_name,
-            "location_types": 'city'
+            "location_types": "city"
         }
 
-        response = requests.get(url=tequila_endpoint, params=tequila_config, headers=tequila_header)
-        print(response.text)
-        # tequila_response = response.json()
-        # print(tequila_response)
+        response = requests.get(url=tequila_endpoint,
+                                headers=tequila_header,
+                                params=tequila_query)
+        print(response.json())
 
-
-        return 'iata'
+        results = response.json()["locations"]
+        code = results[0]["code"]
+        return code
