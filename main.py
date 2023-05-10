@@ -31,6 +31,10 @@ def main():
             print(row['iataCode'])
 
         flight_data = fs.searching_for_flight(row['iataCode'])
+
+        if flight_data is None:
+            continue
+
         if flight_data:
             if row['lowestPrice'] > flight_data.price:
                 new_prices.append(flight_data)
